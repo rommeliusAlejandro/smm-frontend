@@ -1,5 +1,8 @@
-<p-carousel [value]="participants">
-  <ng-template let-participant pTemplate="item">
-    <app-participant [participant]="participant"></app-participant>
-  </ng-template>
-</p-carousel>
+<h2>Lista de Participantes</h2>
+<div *ngIf="participants.length > 0">
+  <p-carousel [value]="participants" [numVisible]="3">
+    <ng-template let-participant pTemplate="item">
+      <app-participant [participant]="participant"></app-participant>
+    </ng-template>
+  </p-carousel>
+</div>

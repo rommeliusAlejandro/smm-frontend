@@ -1,5 +1,13 @@
 <p-card>
-  <p-header>{{participant.name}}</p-header>
+  <p-header>
+    <a (click)="showParticipant()">
+      <h2>{{participant.name}}</h2>
+    </a>
+  </p-header>
+</p-card>
+
+<p-dialog header="{{participant.name}}" [(visible)]="showMe" closable>
+  <h2>{{participant.name}}</h2>
   <div class="p-grid">
     <div class="p-col-6">
       <ul>
@@ -16,4 +24,4 @@
       </ul>
     </div>
   </div>
-</p-card>
+</p-dialog>

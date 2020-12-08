@@ -11,9 +11,19 @@ export class ParticipantComponent implements OnInit {
   @Input()
   participant: Participant = new Participant();
 
+  showMe: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addHistory() {
+
+  }
+
+  showParticipant() {
+    this.showMe = true;
   }
 
 }

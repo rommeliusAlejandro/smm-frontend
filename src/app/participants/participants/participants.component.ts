@@ -10,7 +10,7 @@ import {Participant} from '../participant';
 })
 export class ParticipantsComponent implements OnInit {
 
-  private participants: Participant[] = [];
+  participants: Participant[] = [];
 
   constructor(private participantsService: ParticipantsService) { }
 

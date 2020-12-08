@@ -11,6 +11,7 @@ import { MonthlyProgramsComponent } from './monthlyPrograms/monthly-programs/mon
 import {ParticipantsModule} from './participants/participants.module';
 import {ProgramsModule} from './programs/programs.module';
 import {MonthlyProgramsModule} from './monthlyPrograms/monthly-programs.module';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,6 +28,8 @@ import {MonthlyProgramsModule} from './monthlyPrograms/monthly-programs.module';
     ParticipantsModule,
     ProgramsModule,
     MonthlyProgramsModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
