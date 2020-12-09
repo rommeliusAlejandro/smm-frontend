@@ -1,1 +1,22 @@
-<p>programs works!</p>
+<div class="p-shadow-4">
+  <p-panel>
+    <p-header>Lista de Programas</p-header>
+    <p-orderList [value]="programs" [(selection)]="selectedProgram"
+                 filterBy="name" controlsPosition="left" (onSelectionChange)="setProgram()">
+      <ng-template let-program pTemplate="item">
+        <div class="program-item">
+          <h5 class="p-mb-2">{{program.month}}/{{program.year}}</h5>
+        </div>
+      </ng-template>
+    </p-orderList>
+    <p-footer>
+      <button pButton type="button" label="Agregar" icon="pi pi-plus" (click)="addProgram()"></button>
+    </p-footer>
+  </p-panel>
+</div>
+<div class="p-grid p-mt-4" *ngIf="null !== program">
+  <div class="p-col-12 p-shadow-4">
+    <app-program [program]="program"></app-program>
+  </div>
+</div>
+

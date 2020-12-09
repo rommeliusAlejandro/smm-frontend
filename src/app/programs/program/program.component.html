@@ -1,0 +1,15 @@
+<p-panel>
+  <p-header>{{program.month}}/{{program.year}}</p-header>
+
+  <p-tabView>
+    <p-tabPanel [header]="week.date" *ngFor="let week of program.weeks; let i = index" [selected]="i == 0">
+      Tasks: {{week.tasks.length}}
+    </p-tabPanel>
+  </p-tabView>
+
+  <p-footer>
+    <div class="p-mb-3 p-mt-3">
+      <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="updateProgram()"></button>
+    </div>
+  </p-footer>
+</p-panel>
