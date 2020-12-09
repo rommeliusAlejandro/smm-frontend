@@ -20,4 +20,12 @@ export class ParticipantsService {
     return this.http.get<Participant[]>(this.participantsUrl)
       .pipe(catchError(err => throwError(err)));
   }
+
+  update(participant: Participant): Observable<Participant> {
+    return this.http.put<Participant>(`${this.participantsUrl}/${participant.id}`, participant)
+      .pipe(catchError(err => {
+        console.error(err);
+        return throwError(err);
+      }));
+  }
 }

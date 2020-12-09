@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Participant} from '../participant';
+import {Gender, Participant} from '../participant';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-participant',
@@ -11,19 +12,27 @@ export class ParticipantComponent implements OnInit {
   @Input()
   participant: Participant = new Participant();
 
-  showMe: boolean = false;
+  gender: any = Gender;
+  genders: SelectItem[];
+  ages: SelectItem[];
 
   constructor() { }
 
   ngOnInit() {
+
+    this.genders = [
+      {label: 'Masculino', value: this.gender.MALE.valueOf()},
+      {label: 'Femenino', value: this.gender.FEMALE.valueOf()},
+    ];
+
+    this.ages = [
+      {label: 'Menor', value: 'KID'},
+      {label: 'Adulto', value: 'ADULT'},
+      {label: 'Adulto Mayor', value: 'SENIOR'},
+    ];
   }
 
   addHistory() {
 
   }
-
-  showParticipant() {
-    this.showMe = true;
-  }
-
 }

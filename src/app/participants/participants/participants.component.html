@@ -8,19 +8,6 @@
 </p-orderList>
 <div class="p-grid p-mt-4" *ngIf="null !== participant">
   <div class="p-col-6 p-shadow-4">
-    <p-panel header="{{participant.name}}">
-      <div class="p-grid">
-        <div class="p-col-4 p-shadow-3">
-          <p-selectButton [options]="genders" [(ngModel)]="participant.gender" optionLabel="name"></p-selectButton>
-        </div>
-        <div class="p-col-4 p-shadow-3">
-
-        </div>
-        <div class="p-col-4 p-shadow-3">
-          <h5>Activo</h5>
-          <p-inputSwitch [(ngModel)]="participant.active"></p-inputSwitch>
-        </div>
-      </div>
-    </p-panel>
+    <app-participant [participant]="participant"></app-participant>
   </div>
 </div>

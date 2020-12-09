@@ -1,7 +1,30 @@
-<p-card>
-  <p-header>
-    <a (click)="showParticipant()">
-      <h2>{{participant.name}}</h2>
-    </a>
-  </p-header>
-</p-card>
+<p-panel header="{{participant.name}}">
+  <div class="p-grid">
+    <div class="p-col-4 p-shadow-3">
+      <p-selectButton [options]="genders" [(ngModel)]="participant.gender"></p-selectButton>
+    </div>
+    <div class="p-col-4 p-shadow-3">
+      <p-selectButton [options]="ages" [(ngModel)]="participant.age" [multiple]="multiple"></p-selectButton>
+    </div>
+    <div class="p-col-4 p-shadow-3">
+      <h5>Activo</h5>
+      <p-inputSwitch [(ngModel)]="participant.active"></p-inputSwitch>
+    </div>
+    <div class="p-col-6 p-shadow-3">
+      <h3>Historial</h3>
+      <div class="p-mb-3 p-mt-3">
+        <button pButton type="button" label="Agregar" icon="pi pi-plus" disabled="{{!participant.active}}"></button>
+      </div>
+      <p-virtualScroller [value]="participant.history" scrollHeight="250px" [itemSize]="20">
+        <ng-template pTemplate="item" let-log>
+          {{log.date}}|{{log.room}}
+        </ng-template>
+      </p-virtualScroller>
+    </div>
+  </div>
+  <p-footer>
+    <div class="p-mb-3 p-mt-3">
+      <button pButton type="button" label="Guardar" icon="pi pi-save"></button>
+    </div>
+  </p-footer>
+</p-panel>
