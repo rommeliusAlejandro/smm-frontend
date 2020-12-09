@@ -5,23 +5,3 @@
     </a>
   </p-header>
 </p-card>
-
-<p-dialog header="{{participant.name}}" [(visible)]="showMe" closable>
-  <h2>{{participant.name}}</h2>
-  <div class="p-grid">
-    <div class="p-col-6">
-      <ul>
-        <li>{{participant.gender}}</li>
-        <li>{{participant.active}}</li>
-        <li>{{participant.age}}</li>
-      </ul>
-    </div>
-    <div class="p-col-6">
-      <ul>
-        <li *ngFor="let item of participant.history">
-          {{item.room}}:{{item.date}}
-        </li>
-      </ul>
-    </div>
-  </div>
-</p-dialog>

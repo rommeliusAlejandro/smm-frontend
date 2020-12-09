@@ -19,14 +19,17 @@ export class MenuComponent implements OnInit {
     this.items = [
       {
         label: 'Participants',
+        icon: 'pi pi-users',
         command: (event) => this.navigate('/participants')
       },
       {
         label: 'Programs',
+        icon: 'pi pi-book',
         command: (event) => this.navigate('/programs')
       },
       {
         label: 'Monthly Programs',
+        icon: 'pi pi-calendar',
         command: (event) => this.navigate('/monthlyPrograms')
       }
     ];

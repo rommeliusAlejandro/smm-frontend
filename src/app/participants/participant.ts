@@ -22,3 +22,13 @@ export class Participant {
 
   skills: string[];
 }
+
+export enum Gender {
+  MALE= 'MALE',
+  FEMALE= 'FEMALE'
+}
+
+export enum Age {
+  KID= 'MALE',
+  AUDULT= 'FEMALE'
+}

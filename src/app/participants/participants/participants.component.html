@@ -1,8 +1,26 @@
-<h2>Lista de Participantes</h2>
-<div *ngIf="participants.length > 0">
-  <p-carousel [value]="participants" [numVisible]="3">
-    <ng-template let-participant pTemplate="item">
-      <app-participant [participant]="participant"></app-participant>
-    </ng-template>
-  </p-carousel>
+<p-orderList [value]="participants" [(selection)]="selectedParticipant"
+             filterBy="name" header="Lista de Participantes" controlsPosition="right" (onSelectionChange)="setParticipant()">
+  <ng-template let-participant pTemplate="item">
+    <div class="participant-item">
+      <h5 class="p-mb-2">{{participant.name}}</h5>
+    </div>
+  </ng-template>
+</p-orderList>
+<div class="p-grid p-mt-4" *ngIf="null !== participant">
+  <div class="p-col-6 p-shadow-4">
+    <p-panel header="{{participant.name}}">
+      <div class="p-grid">
+        <div class="p-col-4 p-shadow-3">
+          <p-selectButton [options]="genders" [(ngModel)]="participant.gender" optionLabel="name"></p-selectButton>
+        </div>
+        <div class="p-col-4 p-shadow-3">
+
+        </div>
+        <div class="p-col-4 p-shadow-3">
+          <h5>Activo</h5>
+          <p-inputSwitch [(ngModel)]="participant.active"></p-inputSwitch>
+        </div>
+      </div>
+    </p-panel>
+  </div>
 </div>

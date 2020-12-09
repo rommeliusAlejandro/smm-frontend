@@ -8,7 +8,11 @@ import { ParticipantComponent } from './participant/participant.component';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
+import {OrderListModule} from 'primeng/orderlist';
+import {PanelModule} from 'primeng/panel';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {FormsModule} from '@angular/forms';
+import {SelectButtonModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [ParticipantsComponent, ParticipantComponent],
@@ -20,7 +24,11 @@ import {DialogModule} from 'primeng/dialog';
     OverlayPanelModule,
     InputTextModule,
     ButtonModule,
-    DialogModule
+    OrderListModule,
+    PanelModule,
+    InputSwitchModule,
+    FormsModule,
+    SelectButtonModule,
   ],
   exports: [ParticipantsComponent]
 })
