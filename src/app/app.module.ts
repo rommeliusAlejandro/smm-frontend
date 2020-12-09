@@ -12,6 +12,7 @@ import {ParticipantsModule} from './participants/participants.module';
 import {ProgramsModule} from './programs/programs.module';
 import {MonthlyProgramsModule} from './monthlyPrograms/monthly-programs.module';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastModule} from 'primeng/toast';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
     ProgramsModule,
     MonthlyProgramsModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

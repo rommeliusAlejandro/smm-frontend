@@ -12,7 +12,7 @@ import {OrderListModule} from 'primeng/orderlist';
 import {PanelModule} from 'primeng/panel';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {FormsModule} from '@angular/forms';
-import {SelectButtonModule} from 'primeng/primeng';
+import {InputMaskModule, SelectButtonModule} from 'primeng/primeng';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 
 @NgModule({
@@ -31,6 +31,7 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
     FormsModule,
     SelectButtonModule,
     VirtualScrollerModule,
+    InputMaskModule,
   ],
   exports: [ParticipantsComponent]
 })

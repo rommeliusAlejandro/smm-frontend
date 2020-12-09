@@ -1,19 +1,32 @@
 <p-panel header="{{participant.name}}">
   <div class="p-grid">
-    <div class="p-col-4 p-shadow-3">
+    <div class="p-col-3 p-shadow-3">
+      <h3 class="first">Nombre</h3>
+      <input id="input" type="text" size="20" pInputText [(ngModel)]="participant.name">
+    </div>
+    <div class="p-col-3 p-shadow-3">
+      <h3 class="first">Genero</h3>
       <p-selectButton [options]="genders" [(ngModel)]="participant.gender"></p-selectButton>
     </div>
     <div class="p-col-4 p-shadow-3">
+      <h3 class="first">Edad</h3>
       <p-selectButton [options]="ages" [(ngModel)]="participant.age" [multiple]="multiple"></p-selectButton>
     </div>
-    <div class="p-col-4 p-shadow-3">
-      <h5>Activo</h5>
+    <div class="p-col-2 p-shadow-3">
+      <h3 class="first">Activo</h3>
       <p-inputSwitch [(ngModel)]="participant.active"></p-inputSwitch>
     </div>
     <div class="p-col-6 p-shadow-3">
-      <h3>Historial</h3>
+      <h3 class="first">Historial</h3>
       <div class="p-mb-3 p-mt-3">
-        <button pButton type="button" label="Agregar" icon="pi pi-plus" disabled="{{!participant.active}}"></button>
+        <div class="p-grid">
+          <div class="p-col-6">
+            <p-inputMask id="float-input" type="text" size="10" [(ngModel)]="newLog.date" mask="99/99/9999"></p-inputMask>
+          </div>
+          <div class="p-col-6">
+            <button pButton type="button" label="Agregar" icon="pi pi-plus" (click)="addHistory()"></button>
+          </div>
+        </div>
       </div>
       <p-virtualScroller [value]="participant.history" scrollHeight="250px" [itemSize]="20">
         <ng-template pTemplate="item" let-log>
@@ -21,10 +34,14 @@
         </ng-template>
       </p-virtualScroller>
     </div>
+    <div class="p-col-6 p-shadow-3">
+      <h3 class="first">Skills</h3>
+      {{participant.skills}}
+    </div>
   </div>
   <p-footer>
     <div class="p-mb-3 p-mt-3">
-      <button pButton type="button" label="Guardar" icon="pi pi-save"></button>
+      <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="updateParticipant()"></button>
     </div>
   </p-footer>
 </p-panel>

@@ -1,13 +1,15 @@
-<p-orderList [value]="participants" [(selection)]="selectedParticipant"
-             filterBy="name" header="Lista de Participantes" controlsPosition="right" (onSelectionChange)="setParticipant()">
-  <ng-template let-participant pTemplate="item">
-    <div class="participant-item">
-      <h5 class="p-mb-2">{{participant.name}}</h5>
-    </div>
-  </ng-template>
-</p-orderList>
+<div class="p-shadow-4">
+  <p-orderList [value]="participants" [(selection)]="selectedParticipant"
+               filterBy="name" header="Lista de Participantes" controlsPosition="right" (onSelectionChange)="setParticipant()">
+    <ng-template let-participant pTemplate="item">
+      <div class="participant-item">
+        <h5 class="p-mb-2">{{participant.name}}</h5>
+      </div>
+    </ng-template>
+  </p-orderList>
+</div>
 <div class="p-grid p-mt-4" *ngIf="null !== participant">
-  <div class="p-col-6 p-shadow-4">
+  <div class="p-col-12 p-shadow-4">
     <app-participant [participant]="participant"></app-participant>
   </div>
 </div>

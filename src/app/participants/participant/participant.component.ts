@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Gender, Participant} from '../participant';
+import {Gender, History, Participant} from '../participant';
 import {SelectItem} from 'primeng/api';
+import {ParticipantsService} from '../participants.service';
 
 @Component({
   selector: 'app-participant',
@@ -15,10 +16,16 @@ export class ParticipantComponent implements OnInit {
   gender: any = Gender;
   genders: SelectItem[];
   ages: SelectItem[];
+  newLog: History;
 
-  constructor() { }
+  constructor(private participantsService: ParticipantsService) {
+  }
 
   ngOnInit() {
+    this.newLog = {
+      date: null,
+      room: 'MAIN_ROOM'
+    };
 
     this.genders = [
       {label: 'Masculino', value: this.gender.MALE.valueOf()},
@@ -32,7 +39,35 @@ export class ParticipantComponent implements OnInit {
     ];
   }
 
-  addHistory() {
+  updateParticipant() {
+    this.participantsService.update(this.participant.id, {
+      name: this.participant.name,
+      age: this.participant.age,
+      history: this.participant.history,
+      skills: this.participant.skills,
+      gender: this.participant.gender,
+      active: this.participant.active
+    })
+      .subscribe(next => {
+          console.log(`${next.id} updated`);
+        },
+        error => {
+          console.error(error);
+        });
+  }
 
+  addHistory() {
+    this.participantsService.logHistory(
+      this.participant.id,
+      this.newLog
+    ).subscribe(
+      next => {
+        this.newLog.date = null;
+        this.participant.history = next.history;
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 }
