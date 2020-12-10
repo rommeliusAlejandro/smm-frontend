@@ -14,6 +14,8 @@ export class ProgramsComponent implements OnInit {
   selectedProgram: Program[] = null;
   program: Program = null;
 
+  newProgram = false;
+
   constructor(private programsService: ProgramsService) { }
 
   ngOnInit() {
@@ -26,11 +28,13 @@ export class ProgramsComponent implements OnInit {
   }
 
   setProgram() {
+    this.newProgram = false;
     this.program = this.selectedProgram[0];
   }
 
   addProgram() {
-
+    this.newProgram = true;
+    this.program = new Program();
   }
 
 }

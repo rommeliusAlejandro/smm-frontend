@@ -19,4 +19,9 @@ export class ProgramsService {
     return this.http.get<Program[]>(this.programsUrl)
       .pipe(catchError(err => throwError(err)));
   }
+
+  create(input: Program): Observable<Program> {
+    return this.http.post<Program>(this.programsUrl, input)
+      .pipe(catchError(err => throwError(err)));
+  }
 }

@@ -5,7 +5,16 @@ import {OrderListModule} from 'primeng/orderlist';
 import {PanelModule} from 'primeng/panel';
 import {ButtonModule} from 'primeng/button';
 import { ProgramComponent } from './program/program.component';
-import {TabViewModule} from 'primeng/primeng';
+import {
+  CardModule,
+  InputSwitchModule, InputTextModule,
+  ListboxModule,
+  ScrollPanelModule,
+  SelectButtonModule,
+  SpinnerModule,
+  TabViewModule
+} from 'primeng/primeng';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [ProgramsComponent, ProgramComponent],
@@ -14,7 +23,15 @@ import {TabViewModule} from 'primeng/primeng';
     OrderListModule,
     PanelModule,
     ButtonModule,
-    TabViewModule
+    TabViewModule,
+    CardModule,
+    InputSwitchModule,
+    FormsModule,
+    SelectButtonModule,
+    SpinnerModule,
+    ScrollPanelModule,
+    ListboxModule,
+    InputTextModule
   ],
   exports: [ProgramsComponent]
 })

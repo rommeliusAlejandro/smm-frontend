@@ -1,15 +1,61 @@
 <p-panel>
   <p-header>{{program.month}}/{{program.year}}</p-header>
-
+  <div class="p-grid" *ngIf="newProgram === true">
+    <div class="p-col-3">
+      <h3>Mes</h3>
+      <p-spinner [(ngModel)]="program.month" [min]="0" [max]="12" size="4"></p-spinner>
+    </div>
+    <div class="p-col-3">
+      <h3>Anno</h3>
+      <input type="text" pInputText [(ngModel)]="program.year" size="4"/>
+    </div>
+    <div class="p-col-3">
+      <button pButton type="button" label="Aplicar" icon="pi pi-save" (click)="createWeeks()"></button>
+    </div>
+  </div>
   <p-tabView>
     <p-tabPanel [header]="week.date" *ngFor="let week of program.weeks; let i = index" [selected]="i == 0">
-      Tasks: {{week.tasks.length}}
+      <p-scrollPanel [style]="{width: '100%', height: '500px'}">
+        <p-card class="p-shadow-4" *ngFor="let task of week.tasks; let t = index">
+          <p-header>
+            <div class="p-grid">
+              <div class="p-col">
+                <h3>Intervencion {{t+1}}</h3>
+              </div>
+              <div class="p-col p-col-align-end">
+                <span class="pi pi-trash" (click)="deleteTask(i, t)"></span>
+              </div>
+            </div>
+          </p-header>
+          <div class="p-grid">
+            <div class="p-col-6">
+              <h3 class="first">Tipo de intervencion</h3>
+              <p-listbox [options]="taskNames" [(ngModel)]="task.name"></p-listbox>
+            </div>
+            <div class="p-col-6">
+              <h3 class="first">Leccion</h3>
+              <p-spinner [(ngModel)]="task.exercise" [min]="0" [max]="20"></p-spinner>
+            </div>
+            <div class="p-col-6">
+              <h3 class="first">Genero del/los participantes</h3>
+              <p-selectButton [options]="genders" [(ngModel)]="task.gender"></p-selectButton>
+            </div>
+            <div class="p-col-6">
+              <h3 class="first">Con Auxiliar</h3>
+              <p-inputSwitch [(ngModel)]="task.paired"></p-inputSwitch>
+            </div>
+          </div>
+        </p-card>
+        <p-card class="p-shadow-4">
+          <button pButton type="button" label="Intervencion" icon="pi pi-plus" (click)="addTask(i)"></button>
+        </p-card>
+      </p-scrollPanel>
     </p-tabPanel>
   </p-tabView>
 
   <p-footer>
     <div class="p-mb-3 p-mt-3">
-      <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="updateProgram()"></button>
+      <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="newProgram === true ? createProgram() : updateProgram()"></button>
     </div>
   </p-footer>
 </p-panel>

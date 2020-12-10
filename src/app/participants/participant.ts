@@ -29,6 +29,7 @@ export enum Gender {
 }
 
 export enum Age {
-  KID= 'MALE',
-  AUDULT= 'FEMALE'
+  KID= 'KID',
+  ADULT= 'ADULT',
+  SENIOR= 'SENIOR'
 }
