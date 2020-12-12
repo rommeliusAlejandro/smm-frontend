@@ -24,4 +24,13 @@ export class ProgramsService {
     return this.http.post<Program>(this.programsUrl, input)
       .pipe(catchError(err => throwError(err)));
   }
+
+  update(id: string, program: Program): Observable<Program> {
+    return this.http.put<Program>(`${this.programsUrl}/${id}`, { attributes: {
+      weeks: program.weeks,
+        year: program.year,
+        month: program.month
+      }})
+      .pipe(catchError(err => throwError(err)));
+  }
 }

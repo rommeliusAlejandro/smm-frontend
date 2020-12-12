@@ -46,7 +46,13 @@ export class ProgramComponent implements OnInit {
   }
 
   updateProgram() {
-    console.log('will update');
+    this.programsService.update(this.program.id, this.program)
+      .subscribe(next => {
+          console.log(next);
+        },
+        error => {
+          console.error(error);
+        });
   }
 
   createProgram() {
@@ -70,7 +76,7 @@ export class ProgramComponent implements OnInit {
 
     while (month === monday.month()) {
       weeks.push({
-        date: monday.format('DD/MM/YYYY'),
+        date: monday.format('MM/DD/YYYY'),
         tasks: []
       });
       monday.add(7, 'd');
