@@ -1,21 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Gender, History, Participant} from '../participant';
 import {SelectItem} from 'primeng/api';
 import {ParticipantsService} from '../participants.service';
+import {AppLogger} from '../../framework/logger/app.logger';
 
 @Component({
   selector: 'app-participant',
   templateUrl: './participant.component.html',
   styleUrls: ['./participant.component.css']
 })
-export class ParticipantComponent implements OnInit {
+export class ParticipantComponent implements OnInit, OnChanges {
 
   @Input()
   participant: Participant = new Participant();
 
+  private readonly logger = AppLogger.getInstance(ParticipantComponent.name);
+
   gender: any = Gender;
   genders: SelectItem[];
   ages: SelectItem[];
+  currentHistory: History[];
   newLog: History;
 
   constructor(private participantsService: ParticipantsService) {
@@ -24,7 +28,9 @@ export class ParticipantComponent implements OnInit {
   ngOnInit() {
     this.newLog = {
       date: null,
-      room: 'MAIN_ROOM'
+      room: 'MAIN_ROOM',
+      task: '',
+      monthlyProgramId: '',
     };
 
     this.genders = [
@@ -37,6 +43,10 @@ export class ParticipantComponent implements OnInit {
       {label: 'Adulto', value: 'ADULT'},
       {label: 'Adulto Mayor', value: 'SENIOR'},
     ];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadHistory();
   }
 
   updateParticipant() {
@@ -57,17 +67,37 @@ export class ParticipantComponent implements OnInit {
   }
 
   addHistory() {
+    this.logger.debug(this.newLog);
+
     this.participantsService.logHistory(
       this.participant.id,
       this.newLog
     ).subscribe(
       next => {
-        this.newLog.date = null;
-        this.participant.history = next.history;
+        this.newLog = {
+          date: null,
+          room: 'MAIN_ROOM',
+          task: '',
+          monthlyProgramId: '',
+        };
+        this.loadHistory();
       },
       error => {
         console.error(error);
       }
     );
+  }
+
+  loadHistory() {
+    this.participantsService.loadHistory(this.participant.id)
+      .subscribe(history => {
+        this.currentHistory = history;
+      });
+  }
+
+  deleteLog(index) {
+    const history = this.participant.history;
+    history.splice(index, 1);
+    this.participant.history = history;
   }
 }

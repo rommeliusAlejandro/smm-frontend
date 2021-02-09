@@ -96,4 +96,16 @@ export class ProgramComponent implements OnInit {
     this.program.weeks[week].tasks.splice(task, 1);
   }
 
+  createAssignments() {
+    this.programsService.createSchedule(this.program.month, this.program.id)
+      .subscribe(
+        next => {
+          console.log('Assignments done!');
+        },
+        error => {
+          console.error(error);
+        }
+      );
+  }
+
 }

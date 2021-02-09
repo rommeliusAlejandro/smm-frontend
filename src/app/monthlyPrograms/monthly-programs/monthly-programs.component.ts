@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MonthlyProgram} from '../monthly-program';
+import {MonthlyProgramsService} from '../monthly-programs.service';
 
 @Component({
   selector: 'app-monthly-programs',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonthlyProgramsComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  assignments: MonthlyProgram[];
+
+  selectedAssignments: MonthlyProgram[];
+
+  assigmentList: MonthlyProgram = null;
+
+  constructor(private readonly monthlyProgramsService: MonthlyProgramsService) {
+  }
 
   ngOnInit() {
+
+    this.monthlyProgramsService.getAll().subscribe(
+      next => {
+        this.assignments = next;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+  setSelectedAssignments() {
+    this.assigmentList = this.selectedAssignments[0];
   }
 
 }

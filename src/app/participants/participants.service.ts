@@ -20,6 +20,11 @@ export class ParticipantsService {
       .pipe(catchError(err => throwError(err)));
   }
 
+  findAssignableParticipants(month: number): Observable<Participant[]> {
+    return this.http.get<Participant[]>(`${this.participantsUrl}/findAssignableParticipants/${month}`)
+      .pipe(catchError(err => throwError(err)));
+  }
+
   update(id: string, attributes: any): Observable<Participant> {
     return this.http.put<Participant>(`${this.participantsUrl}/${id}`, {attributes})
       .pipe(
@@ -31,8 +36,19 @@ export class ParticipantsService {
         }));
   }
 
-  logHistory(id: string, log: History): Observable<Participant> {
-    return this.http.put<Participant>(`${this.participantsUrl}/${id}/logHistory`, log)
+  logHistory(id: string, log: History): Observable<History> {
+    return this.http.post<History>(`${this.participantsUrl}/${id}/logHistory`, log)
+      .pipe(
+        map(output => {
+          return output;
+        }),
+        catchError(err => {
+          return throwError(err);
+        }));
+  }
+
+  loadHistory(participantId: string): Observable<History[]> {
+    return this.http.get<History[]>(`${this.participantsUrl}/${participantId}/history`)
       .pipe(
         map(output => {
           return output;

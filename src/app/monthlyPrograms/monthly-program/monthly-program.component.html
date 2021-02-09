@@ -1,0 +1,47 @@
+<p-panel>
+  <p-header>{{assignmentList.name}}</p-header>
+  <p-tabView>
+    <p-tabPanel [header]="week.date" *ngFor="let week of assignmentList.weeks; let i = index" [selected]="i == 0">
+      <p-scrollPanel [style]="{width: '100%', height: '500px'}">
+        <p-card class="p-shadow-4" *ngFor="let room of week.rooms; let t = index">
+          <p-header>
+            <div class="p-grid">
+              <div class="p-col">
+                <h3>Sala: {{rooms[room.roomId]}}</h3>
+              </div>
+            </div>
+          </p-header>
+          <div class="p-grid">
+            <p-card [header]="taskNames[participant.task]"   *ngFor="let participant of room.participants" class="p-shadow-6 p-col-4">
+              <div class="p-grid">
+                <div class="p-col-12">
+                  <h5>Nombre</h5>
+                  <span>{{participant.mainName}}</span>
+                </div>
+                <div class="p-col-12" *ngIf="participant.helperName">
+                  <h5>Ayudante</h5>
+                  <span>{{participant.helperName}}</span>
+                </div>
+                <div class="p-col-12">
+                  <h5>Estudio</h5>
+                  <span>{{participant.exercise}}</span>
+                </div>
+              </div>
+            </p-card>
+          </div>
+        </p-card>
+      </p-scrollPanel>
+    </p-tabPanel>
+  </p-tabView>
+  <p-footer>
+    <div class="p-grid">
+      <div class="p-col-2">
+        <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="updateAssignments()"></button>
+      </div>
+      <div class="p-col-2" *ngIf="assignmentList.status === 'DRAFT'">
+        <button pButton type="button" label="Aprovar" icon="pi pi-check" (click)="approve()"></button>
+      </div>
+    </div>
+  </p-footer>
+</p-panel>
+

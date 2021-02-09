@@ -1,1 +1,19 @@
-<p>monthly-programs works!</p>
+<div class="p-shadow-4">
+  <p-panel>
+    <p-header>Assignaciones Reunion VyMC</p-header>
+    <p-orderList [value]="assignments" [(selection)]="selectedAssignments"
+                 filterBy="name" controlsPosition="left" (onSelectionChange)="setSelectedAssignments()">
+      <ng-template let-assignment pTemplate="item">
+        <div class="program-item">
+          <h5 class="p-mb-2">{{assignment.name}}</h5>
+        </div>
+      </ng-template>
+    </p-orderList>
+  </p-panel>
+</div>
+<div class="p-grid p-mt-4" *ngIf="null !== assigmentList">
+  <div class="p-col-12 p-shadow-4">
+    <app-monthly-program [assignmentList]="assigmentList"></app-monthly-program>
+  </div>
+</div>
+

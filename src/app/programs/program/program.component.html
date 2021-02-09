@@ -54,8 +54,13 @@
   </p-tabView>
 
   <p-footer>
-    <div class="p-mb-3 p-mt-3">
-      <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="newProgram === true ? createProgram() : updateProgram()"></button>
+    <div class="p-grid">
+      <div class="p-col-2">
+        <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="newProgram === true ? createProgram() : updateProgram()"></button>
+      </div>
+      <div class="p-col-3">
+        <button pButton type="button" label="Crear Assignaciones" icon="pi pi-calendar" (click)="createAssignments()"></button>
+      </div>
     </div>
   </p-footer>
 </p-panel>

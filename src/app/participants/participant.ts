@@ -2,8 +2,14 @@
  * @author Rommel Loayza
  */
 export class History {
-  date: Date;
+  id?: string;
+  participantId?: string;
   room: string;
+  date: Date;
+  monthNumber?: number;
+  year?: number;
+  task: string;
+  monthlyProgramId: string;
 }
 
 export class Participant {
