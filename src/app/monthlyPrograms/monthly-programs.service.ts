@@ -11,6 +11,7 @@ import {MonthlyProgram} from './monthly-program';
 export class MonthlyProgramsService {
 
   private monthlyProgramsUrl = `${environment.api_host}/monthlyProgram`;
+  private scheduleApproveUrl = `${environment.api_host}/schedule/approve`;
 
   constructor(private http: HttpClient) {
   }
@@ -29,5 +30,12 @@ export class MonthlyProgramsService {
         catchError(err => {
           return throwError(err);
         }));
+  }
+
+  approve(program: MonthlyProgram, month: number): Observable<MonthlyProgram> {
+    return this.http.post<MonthlyProgram>(
+      `${this.scheduleApproveUrl}/${month}`,
+      program
+    ).pipe(catchError(err => throwError(err)));
   }
 }

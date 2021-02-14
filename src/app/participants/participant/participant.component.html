@@ -10,11 +10,15 @@
     </div>
     <div class="p-col-4 p-shadow-3">
       <h3 class="first">Edad</h3>
-      <p-selectButton [options]="ages" [(ngModel)]="participant.age" [multiple]="multiple"></p-selectButton>
+      <p-selectButton [options]="ages" [(ngModel)]="participant.age"></p-selectButton>
     </div>
-    <div class="p-col-2 p-shadow-3">
+    <div class="p-col-1 p-shadow-3">
       <h3 class="first">Activo</h3>
       <p-inputSwitch [(ngModel)]="participant.active"></p-inputSwitch>
+    </div>
+    <div class="p-col-1 p-shadow-3">
+      <h3 class="first">Reservado</h3>
+      <p-inputSwitch [(ngModel)]="participant.reserved"></p-inputSwitch>
     </div>
     <div class="p-col-8 p-shadow-3">
       <h3 class="first">Historial</h3>
@@ -51,7 +55,8 @@
   </div>
   <p-footer>
     <div class="p-mb-3 p-mt-3">
-      <button pButton type="button" label="Guardar" icon="pi pi-save" (click)="updateParticipant()"></button>
+      <button pButton type="button" label="Agregar" icon="pi pi-plus" (click)="createParticipant()" *ngIf="new"></button>
+      <button pButton type="button" label="Actualizar" icon="pi pi-save" (click)="updateParticipant()" *ngIf="!new"></button>
     </div>
   </p-footer>
 </p-panel>

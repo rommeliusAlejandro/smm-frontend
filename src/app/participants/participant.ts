@@ -21,7 +21,7 @@ export class Participant {
 
   active: boolean;
 
-  history: History[];
+  reserved: boolean;
 
   age: string;
 
@@ -29,12 +29,12 @@ export class Participant {
 }
 
 export enum Gender {
-  MALE= 'MALE',
-  FEMALE= 'FEMALE'
+  MALE = 'MALE',
+  FEMALE = 'FEMALE'
 }
 
 export enum Age {
-  KID= 'KID',
-  ADULT= 'ADULT',
-  SENIOR= 'SENIOR'
+  KID = 'KID',
+  ADULT = 'ADULT',
+  SENIOR = 'SENIOR'
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Gender, History, Participant} from '../participant';
 import {SelectItem} from 'primeng/api';
 import {ParticipantsService} from '../participants.service';
@@ -13,6 +13,12 @@ export class ParticipantComponent implements OnInit, OnChanges {
 
   @Input()
   participant: Participant = new Participant();
+
+  @Input()
+  new: boolean;
+
+  @Output() addedParticipant: EventEmitter<Participant> = new EventEmitter();
+
 
   private readonly logger = AppLogger.getInstance(ParticipantComponent.name);
 
@@ -48,11 +54,22 @@ export class ParticipantComponent implements OnInit, OnChanges {
     this.loadHistory();
   }
 
+  createParticipant() {
+    this.participantsService.create(this.participant)
+      .subscribe(
+        next => {
+          this.logger.debug(JSON.stringify(next));
+          this.participant = next;
+          this.new = false;
+          this.addedParticipant.emit(next);
+        }
+      );
+  }
+
   updateParticipant() {
     this.participantsService.update(this.participant.id, {
       name: this.participant.name,
       age: this.participant.age,
-      history: this.participant.history,
       skills: this.participant.skills,
       gender: this.participant.gender,
       active: this.participant.active
@@ -94,8 +111,8 @@ export class ParticipantComponent implements OnInit, OnChanges {
   }
 
   deleteLog(index) {
-    const history = this.participant.history;
+    /*const history = this.participant.history;
     history.splice(index, 1);
-    this.participant.history = history;
+    this.participant.history = history;*/
   }
 }

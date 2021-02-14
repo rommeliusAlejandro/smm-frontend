@@ -4,6 +4,8 @@ import {ParticipantsService} from '../../participants/participants.service';
 import {Participant} from '../../participants/participant';
 import {MonthlyProgramsService} from '../monthly-programs.service';
 import {ProgramsService} from '../../programs/programs.service';
+import {logger} from 'codelyzer/util/logger';
+import {AppLogger} from '../../framework/logger/app.logger';
 
 @Component({
   selector: 'app-monthly-program',
@@ -40,6 +42,8 @@ export class MonthlyProgramComponent implements OnInit {
     OTHER: 'Otro'
   };
 
+  private readonly logger = AppLogger.getInstance(MonthlyProgramComponent.name);
+
   constructor(private readonly monthlyProgramsService: MonthlyProgramsService,
               private readonly participantsService: ParticipantsService) {
   }
@@ -63,7 +67,12 @@ export class MonthlyProgramComponent implements OnInit {
   }
 
   approve() {
-
+    const dateString = this.assignmentList.weeks[0].date;
+    const date = new Date(dateString);
+    this.monthlyProgramsService.approve(this.assignmentList, date.getMonth() + 1)
+      .subscribe(next => {
+        this.logger.debug(JSON.stringify(next));
+      });
   }
 
   openEditTicket(task: Task, dateString: string) {
@@ -96,7 +105,20 @@ export class MonthlyProgramComponent implements OnInit {
       .participants[taskIndex] = this.currentTicket;
 
     this.updateAssignments();
+    this.reserveParticipant(this.mainAssigned.id);
+    if (this.helperAssigned) {
+      this.reserveParticipant(this.helperAssigned.id);
+    }
     this.closeTicket();
+  }
+
+  reserveParticipant(id: string) {
+    this.participantsService.reserve(id)
+      .subscribe(
+        next => {
+          this.logger.debug(JSON.stringify(next));
+        }
+      );
   }
 
   closeTicket() {

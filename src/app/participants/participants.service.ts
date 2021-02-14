@@ -36,6 +36,17 @@ export class ParticipantsService {
         }));
   }
 
+  create(participant: Participant): Observable<Participant> {
+    return this.http.post<Participant>(`${this.participantsUrl}`, participant)
+      .pipe(
+        map(output => {
+          return output;
+        }),
+        catchError(err => {
+          return throwError(err);
+        }));
+  }
+
   logHistory(id: string, log: History): Observable<History> {
     return this.http.post<History>(`${this.participantsUrl}/${id}/logHistory`, log)
       .pipe(
@@ -49,6 +60,17 @@ export class ParticipantsService {
 
   loadHistory(participantId: string): Observable<History[]> {
     return this.http.get<History[]>(`${this.participantsUrl}/${participantId}/history`)
+      .pipe(
+        map(output => {
+          return output;
+        }),
+        catchError(err => {
+          return throwError(err);
+        }));
+  }
+
+  reserve(id: string): Observable<Participant> {
+    return this.http.put<Participant>(`${this.participantsUrl}/${id}/reserve`, null)
       .pipe(
         map(output => {
           return output;
