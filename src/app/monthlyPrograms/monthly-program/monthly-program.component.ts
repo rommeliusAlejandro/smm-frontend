@@ -19,6 +19,13 @@ export class MonthlyProgramComponent implements OnInit {
 
   currentTicket: Task;
 
+  currentWeek = 0;
+
+  candidates: { label: string, value: Participant }[];
+
+  mainAssigned: Participant;
+  helperAssigned: Participant;
+
   rooms = {
     MAIN_ROOM: 'Sala Principal',
     AUX_ROOM_1: 'Sala Auxiliar'
@@ -33,10 +40,16 @@ export class MonthlyProgramComponent implements OnInit {
     OTHER: 'Otro'
   };
 
-  constructor(private readonly monthlyProgramsService: MonthlyProgramsService) { }
+  constructor(private readonly monthlyProgramsService: MonthlyProgramsService,
+              private readonly participantsService: ParticipantsService) {
+  }
 
   ngOnInit() {
 
+  }
+
+  setWeek(event) {
+    this.currentWeek = event.index;
   }
 
   updateAssignments() {
@@ -53,8 +66,43 @@ export class MonthlyProgramComponent implements OnInit {
 
   }
 
-  openEditTicket(task) {
+  openEditTicket(task: Task, dateString: string) {
+    const date = new Date(dateString);
     this.currentTicket = task;
-    this.editTicket = true;
+    this.participantsService.findCandidates(date.getMonth() + 1,
+      this.currentTicket.gender,
+      date.getFullYear())
+      .subscribe(candidates => {
+        this.editTicket = true;
+        this.candidates = candidates.map(candidate => {
+          return {label: candidate.name, value: candidate};
+        });
+      });
+  }
+
+  updateTicket() {
+
+    const taskIndex = this.assignmentList.weeks[this.currentWeek].rooms[0].participants.indexOf(this.currentTicket);
+    this.currentTicket.mainId = this.mainAssigned.id;
+    this.currentTicket.mainName = this.mainAssigned.name;
+
+    if (this.helperAssigned) {
+      this.currentTicket.helperId = this.helperAssigned.id;
+      this.currentTicket.helperName = this.helperAssigned.name;
+    }
+
+    this.assignmentList.weeks[this.currentWeek]
+      .rooms[0]
+      .participants[taskIndex] = this.currentTicket;
+
+    this.updateAssignments();
+    this.closeTicket();
+  }
+
+  closeTicket() {
+    this.currentTicket = null;
+    this.mainAssigned = null;
+    this.helperAssigned = null;
+    this.editTicket = false;
   }
 }

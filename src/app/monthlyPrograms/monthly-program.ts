@@ -8,6 +8,7 @@ export class Task {
   mainId: string;
   helperName: string;
   helperId: string;
+  gender: string;
 }
 
 export class MonthlyProgram {

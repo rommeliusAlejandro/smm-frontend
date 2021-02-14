@@ -20,8 +20,8 @@ export class ParticipantsService {
       .pipe(catchError(err => throwError(err)));
   }
 
-  findAssignableParticipants(month: number): Observable<Participant[]> {
-    return this.http.get<Participant[]>(`${this.participantsUrl}/findAssignableParticipants/${month}`)
+  findCandidates(month: number, gender: string, year: number): Observable<Participant[]> {
+    return this.http.get<Participant[]>(`${this.participantsUrl}/candidates?year=${year}&month=${month}&gender=${gender}`)
       .pipe(catchError(err => throwError(err)));
   }
 

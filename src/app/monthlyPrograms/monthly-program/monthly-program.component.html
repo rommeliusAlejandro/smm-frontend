@@ -1,6 +1,6 @@
 <p-panel>
   <p-header>{{assignmentList.name}}</p-header>
-  <p-tabView>
+  <p-tabView (onChange)="setWeek($event)">
     <p-tabPanel [header]="week.date" *ngFor="let week of assignmentList.weeks; let i = index" [selected]="i == 0">
       <p-scrollPanel [style]="{width: '100%', height: '500px'}">
         <p-card class="p-shadow-4" *ngFor="let room of week.rooms; let t = index">
@@ -27,7 +27,7 @@
                   <span>{{participant.exercise}}</span>
                 </div>
                 <div class="p-col-12">
-                  <button type="button" (click)="openEditTicket(participant)" pButton icon="pi pi-pencil"></button>
+                  <button type="button" (click)="openEditTicket(participant, week.date)" pButton icon="pi pi-pencil"></button>
                 </div>
               </div>
             </p-card>
@@ -51,9 +51,24 @@
 <p-dialog header="Ticket" [(visible)]="editTicket" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
           [maximizable]="true" [baseZIndex]="10000">
 
-  {{currentTicket | json}}
+  <p-card [header]="taskNames[currentTicket.task]" class="p-shadow-6 p-col-4" *ngIf="currentTicket">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <h5>Nombre</h5>
+        <p-dropdown [options]="candidates" [(ngModel)]="mainAssigned" [filter]="true"></p-dropdown>
+      </div>
+      <div class="p-col-12" *ngIf="currentTicket.helperName">
+        <h5>Ayudante</h5>
+        <p-dropdown [options]="candidates" [(ngModel)]="helperAssigned" [filter]="true"></p-dropdown>
+      </div>
+      <div class="p-col-12">
+        <h5>Estudio</h5>
+        <span>{{currentTicket.exercise}}</span>
+      </div>
+    </div>
+  </p-card>
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="editTicket=false" label="Save"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="editTicket=false" label="Close" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="pi pi-check" (click)="updateTicket()" label="Save"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="closeTicket()" label="Close" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
