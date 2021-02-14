@@ -26,9 +26,6 @@
           <div class="p-col-3">
             <input pInputText type="text" size="10" [(ngModel)]="newLog.monthlyProgramId" placeholder="Programa"/>
           </div>
-          <div class="p-col-3">
-            <input pInputText type="text" size="10" [(ngModel)]="newLog.task" placeholder="Tarea"/>
-          </div>
           <div class="p-col-6">
             <button pButton type="button" label="Agregar" icon="pi pi-plus" (click)="addHistory()"></button>
           </div>
@@ -41,7 +38,6 @@
               <td>{{log.date | date:'shortDate'}}</td>
               <td>{{log.room}}</td>
               <td>{{log.monthlyProgramId}}</td>
-              <td>{{log.task}}</td>
               <td><span class="pi pi-times-circle" (click)="deleteLog(currentHistory.indexOf(log))"></span> </td>
             </tr>
           </table>

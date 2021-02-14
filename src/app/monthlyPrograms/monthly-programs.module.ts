@@ -4,23 +4,24 @@ import {MonthlyProgramsComponent} from './monthly-programs/monthly-programs.comp
 import {PanelModule} from 'primeng/panel';
 import {OrderListModule} from 'primeng/orderlist';
 import { MonthlyProgramComponent } from './monthly-program/monthly-program.component';
-import {ButtonModule, CardModule, ListboxModule, MultiSelectModule, ScrollPanelModule, TabViewModule} from 'primeng/primeng';
+import {ButtonModule, CardModule, DialogModule, ListboxModule, MultiSelectModule, ScrollPanelModule, TabViewModule} from 'primeng/primeng';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [MonthlyProgramsComponent, MonthlyProgramComponent],
   exports: [MonthlyProgramsComponent],
-  imports: [
-    CommonModule,
-    PanelModule,
-    OrderListModule,
-    TabViewModule,
-    ScrollPanelModule,
-    CardModule,
-    ListboxModule,
-    FormsModule,
-    MultiSelectModule,
-    ButtonModule
-  ]
+    imports: [
+        CommonModule,
+        PanelModule,
+        OrderListModule,
+        TabViewModule,
+        ScrollPanelModule,
+        CardModule,
+        ListboxModule,
+        FormsModule,
+        MultiSelectModule,
+        ButtonModule,
+        DialogModule
+    ]
 })
 export class MonthlyProgramsModule { }

@@ -1,6 +1,15 @@
 /**
  * @author Rommel Loayza
  */
+export class Task {
+  task: string;
+  exercise: number;
+  mainName: string;
+  mainId: string;
+  helperName: string;
+  helperId: string;
+}
+
 export class MonthlyProgram {
   weeks: [
     {
@@ -8,16 +17,7 @@ export class MonthlyProgram {
       rooms: [
         {
           roomId: string,
-          participants: [
-            {
-              task: string,
-              exercise: number,
-              mainName: string,
-              mainId: string,
-              helperName: string,
-              helperId: string
-            }
-          ]
+          participants: Task[]
         }
       ]
     }];

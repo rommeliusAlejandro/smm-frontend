@@ -26,6 +26,9 @@
                   <h5>Estudio</h5>
                   <span>{{participant.exercise}}</span>
                 </div>
+                <div class="p-col-12">
+                  <button type="button" (click)="openEditTicket(participant)" pButton icon="pi pi-pencil"></button>
+                </div>
               </div>
             </p-card>
           </div>
@@ -45,3 +48,12 @@
   </p-footer>
 </p-panel>
 
+<p-dialog header="Ticket" [(visible)]="editTicket" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000">
+
+  {{currentTicket | json}}
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="editTicket=false" label="Save"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="editTicket=false" label="Close" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

@@ -29,7 +29,6 @@ export class ParticipantComponent implements OnInit, OnChanges {
     this.newLog = {
       date: null,
       room: 'MAIN_ROOM',
-      task: '',
       monthlyProgramId: '',
     };
 
@@ -77,7 +76,6 @@ export class ParticipantComponent implements OnInit, OnChanges {
         this.newLog = {
           date: null,
           room: 'MAIN_ROOM',
-          task: '',
           monthlyProgramId: '',
         };
         this.loadHistory();

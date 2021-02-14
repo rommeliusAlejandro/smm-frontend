@@ -8,7 +8,6 @@ export class History {
   date: Date;
   monthNumber?: number;
   year?: number;
-  task: string;
   monthlyProgramId: string;
 }
 

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MonthlyProgram} from '../monthly-program';
+import {MonthlyProgram, Task} from '../monthly-program';
 import {ParticipantsService} from '../../participants/participants.service';
 import {Participant} from '../../participants/participant';
 import {MonthlyProgramsService} from '../monthly-programs.service';
@@ -15,7 +15,9 @@ export class MonthlyProgramComponent implements OnInit {
   @Input()
   assignmentList: MonthlyProgram;
 
-  allParticipants: Participant[];
+  editTicket = false;
+
+  currentTicket: Task;
 
   rooms = {
     MAIN_ROOM: 'Sala Principal',
@@ -49,5 +51,10 @@ export class MonthlyProgramComponent implements OnInit {
 
   approve() {
 
+  }
+
+  openEditTicket(task) {
+    this.currentTicket = task;
+    this.editTicket = true;
   }
 }
