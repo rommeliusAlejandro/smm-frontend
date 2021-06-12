@@ -44,7 +44,8 @@ export class ParticipantsComponent implements OnInit {
       gender: '',
       active: false,
       age: '',
-      skills: []
+      skills: [],
+      reserved: false
     };
   }
 

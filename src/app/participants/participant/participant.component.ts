@@ -72,7 +72,8 @@ export class ParticipantComponent implements OnInit, OnChanges {
       age: this.participant.age,
       skills: this.participant.skills,
       gender: this.participant.gender,
-      active: this.participant.active
+      active: this.participant.active,
+      reserved: this.participant.reserved
     })
       .subscribe(next => {
           console.log(`${next.id} updated`);
