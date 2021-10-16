@@ -36,6 +36,28 @@ export class ParticipantsService {
         }));
   }
 
+  delete(id: string): Observable<Participant> {
+    return this.http.delete<Participant>(`${this.participantsUrl}/${id}`)
+      .pipe(
+        map(output => {
+          return output;
+        }),
+        catchError(err => {
+          return throwError(err);
+        }));
+  }
+
+  releaseParticipants(): Observable<number> {
+    return this.http.post<number>(`${this.participantsUrl}/release`, {})
+      .pipe(
+        map(output => {
+          return output;
+        }),
+        catchError(err => {
+          return throwError(err);
+        }));
+  }
+
   create(participant: Participant): Observable<Participant> {
     return this.http.post<Participant>(`${this.participantsUrl}`, participant)
       .pipe(

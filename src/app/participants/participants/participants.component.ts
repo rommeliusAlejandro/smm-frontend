@@ -57,4 +57,26 @@ export class ParticipantsComponent implements OnInit {
     this.logger.debug(`${newParticipant.name} was added`);
   }
 
+  deletedParticipantHandler(deleted: Participant) {
+    this.new = true;
+    this.participant = null;
+    const aux = this.participants;
+    const index = aux.indexOf(deleted);
+    aux.splice(index, 1);
+    this.participants = aux;
+    this.logger.debug(`${deleted.name} was deleted`);
+  }
+
+  releaseAll() {
+    this.participantsService.releaseParticipants()
+      .subscribe(
+        next => {
+          console.log(next);
+        },
+        error => {
+          console.error(error);
+        }
+      );
+  }
+
 }

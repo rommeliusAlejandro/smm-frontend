@@ -18,6 +18,7 @@ export class ParticipantComponent implements OnInit, OnChanges {
   new: boolean;
 
   @Output() addedParticipant: EventEmitter<Participant> = new EventEmitter();
+  @Output() deletedParticipant: EventEmitter<Participant> = new EventEmitter();
 
 
   private readonly logger = AppLogger.getInstance(ParticipantComponent.name);
@@ -81,6 +82,19 @@ export class ParticipantComponent implements OnInit, OnChanges {
         error => {
           console.error(error);
         });
+  }
+
+  deleteParticipant() {
+    this.participantsService.delete(this.participant.id)
+      .subscribe(
+        next => {
+          console.log(`${next.name} has been deleted`);
+          this.deletedParticipant.emit(next);
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
 
   addHistory() {

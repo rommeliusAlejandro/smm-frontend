@@ -58,5 +58,8 @@
       <button pButton type="button" label="Agregar" icon="pi pi-plus" (click)="createParticipant()" *ngIf="new"></button>
       <button pButton type="button" label="Actualizar" icon="pi pi-save" (click)="updateParticipant()" *ngIf="!new"></button>
     </div>
+    <div class="p-mb-3 p-mt-3">
+      <button pButton type="button" label="Borrar" icon="pi pi-trash" (click)="deleteParticipant()" *ngIf="!new"></button>
+    </div>
   </p-footer>
 </p-panel>

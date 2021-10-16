@@ -12,9 +12,15 @@
   <div class="p-col-3">
     <button pButton type="button" label="Nuevo Participante" icon="pi pi-plus" (click)="newParticipant()"></button>
   </div>
+  <div class="p-col-3">
+    <button pButton type="button" label="Liberar Participantes" icon="pi pi-refresh" (click)="releaseAll()"></button>
+  </div>
 </div>
 <div class="p-grid p-mt-4" *ngIf="null !== participant">
   <div class="p-col-12 p-shadow-4">
-    <app-participant [participant]="participant" [new]="new" (addedParticipant)="newParticipantAddedHandler($event)"></app-participant>
+    <app-participant [participant]="participant" [new]="new"
+                     (addedParticipant)="newParticipantAddedHandler($event)"
+                     (deletedParticipant)="deletedParticipantHandler($event)"
+    ></app-participant>
   </div>
 </div>
