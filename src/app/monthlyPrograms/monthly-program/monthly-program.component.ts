@@ -30,7 +30,7 @@ export class MonthlyProgramComponent implements OnInit {
 
   rooms = {
     MAIN_ROOM: 'Sala Principal',
-    AUX_ROOM_1: 'Sala Auxiliar'
+    SECOND_ROOM: 'Sala Auxiliar'
   };
 
   taskNames = {

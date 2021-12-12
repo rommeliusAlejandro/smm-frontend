@@ -19,28 +19,28 @@
         <p-card class="p-shadow-4" *ngFor="let task of week.tasks; let t = index">
           <p-header>
             <div class="p-grid">
-              <div class="p-col">
+              <div class="p-col-11">
                 <h3>Intervencion {{t+1}}</h3>
               </div>
-              <div class="p-col p-col-align-end">
+              <div class="p-col-1 p-col-align-end">
                 <span class="pi pi-trash" (click)="deleteTask(i, t)"></span>
               </div>
             </div>
           </p-header>
           <div class="p-grid">
-            <div class="p-col-6">
+            <div class="p-col-4">
               <h3 class="first">Tipo de intervencion</h3>
               <p-listbox [options]="taskNames" [(ngModel)]="task.name"></p-listbox>
             </div>
-            <div class="p-col-6">
+            <div class="p-col-2">
               <h3 class="first">Leccion</h3>
-              <p-spinner [(ngModel)]="task.exercise" [min]="0" [max]="20"></p-spinner>
+              <p-spinner [(ngModel)]="task.exercise" [min]="0" [max]="20" [size]="5"></p-spinner>
             </div>
-            <div class="p-col-6">
-              <h3 class="first">Genero del/los participantes</h3>
+            <div class="p-col-3">
+              <h3 class="first">Genero</h3>
               <p-selectButton [options]="genders" [(ngModel)]="task.gender"></p-selectButton>
             </div>
-            <div class="p-col-6">
+            <div class="p-col-2">
               <h3 class="first">Con Auxiliar</h3>
               <p-inputSwitch [(ngModel)]="task.paired"></p-inputSwitch>
             </div>
