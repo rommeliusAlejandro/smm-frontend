@@ -39,10 +39,9 @@
         <ng-template pTemplate="item" let-log>
           <table>
             <tr>
-              <td>{{log.date | date:'shortDate'}}</td>
-              <td>{{log.room}}</td>
-              <td>{{log.monthlyProgramId}}</td>
-              <td><span class="pi pi-times-circle" (click)="deleteLog(currentHistory.indexOf(log))"></span> </td>
+              <td>{{log.date | date:'dd/MM/yyyy'}}</td>
+              <td>{{rooms[log.room]}}</td>
+              <td>{{log.year}}</td>
             </tr>
           </table>
         </ng-template>

@@ -26,6 +26,8 @@ export class Participant {
   age: string;
 
   skills: string[];
+
+  last?: Date;
 }
 
 export enum Gender {

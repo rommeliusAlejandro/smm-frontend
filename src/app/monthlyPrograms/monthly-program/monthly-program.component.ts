@@ -3,8 +3,6 @@ import {MonthlyProgram, Task} from '../monthly-program';
 import {ParticipantsService} from '../../participants/participants.service';
 import {Participant} from '../../participants/participant';
 import {MonthlyProgramsService} from '../monthly-programs.service';
-import {ProgramsService} from '../../programs/programs.service';
-import {logger} from 'codelyzer/util/logger';
 import {AppLogger} from '../../framework/logger/app.logger';
 
 @Component({
@@ -84,7 +82,10 @@ export class MonthlyProgramComponent implements OnInit {
       .subscribe(candidates => {
         this.editTicket = true;
         this.candidates = candidates.map(candidate => {
-          return {label: candidate.name, value: candidate};
+          return {
+            label: `${candidate.name} (ultima: ${new Date(candidate.last).toLocaleDateString()})`,
+            value: candidate
+          };
         });
       });
   }

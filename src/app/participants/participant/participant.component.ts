@@ -20,6 +20,11 @@ export class ParticipantComponent implements OnInit, OnChanges {
   @Output() addedParticipant: EventEmitter<Participant> = new EventEmitter();
   @Output() deletedParticipant: EventEmitter<Participant> = new EventEmitter();
 
+  rooms = {
+    MAIN_ROOM: 'Sala Principal',
+    SECOND_ROOM: 'Sala Auxiliar'
+  };
+
 
   private readonly logger = AppLogger.getInstance(ParticipantComponent.name);
 
@@ -104,7 +109,7 @@ export class ParticipantComponent implements OnInit, OnChanges {
       this.participant.id,
       this.newLog
     ).subscribe(
-      next => {
+      () => {
         this.newLog = {
           date: null,
           room: 'MAIN_ROOM',
@@ -123,11 +128,5 @@ export class ParticipantComponent implements OnInit, OnChanges {
       .subscribe(history => {
         this.currentHistory = history;
       });
-  }
-
-  deleteLog(index) {
-    /*const history = this.participant.history;
-    history.splice(index, 1);
-    this.participant.history = history;*/
   }
 }

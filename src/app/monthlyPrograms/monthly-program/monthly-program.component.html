@@ -48,8 +48,8 @@
   </p-footer>
 </p-panel>
 
-<p-dialog header="Ticket" [(visible)]="editTicket" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
-          [maximizable]="true" [baseZIndex]="10000">
+<p-dialog header="Ticket" [(visible)]="editTicket" [modal]="true" [responsive]="true" [style]="{width: '450px', minWidth: '200px'}" [minY]="100"
+          [maximizable]="false" [baseZIndex]="10000">
 
   <p-card [header]="taskNames[currentTicket.task]" class="p-shadow-6 p-col-4" *ngIf="currentTicket">
     <div class="p-grid">
